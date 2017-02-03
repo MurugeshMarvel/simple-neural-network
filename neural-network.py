@@ -1,6 +1,6 @@
 import random
 import math
-
+import re
 #
 # Shorthand:
 #   "pd_" as a variable prefix means "partial derivative"
@@ -71,6 +71,7 @@ class NeuralNetwork:
         # 1. Output neuron deltas
         pd_errors_wrt_output_neuron_total_net_input = [0] * len(self.output_layer.neurons)
         for o in range(len(self.output_layer.neurons)):
+'
 
             # ∂E/∂zⱼ
             pd_errors_wrt_output_neuron_total_net_input[o] = self.output_layer.neurons[o].calculate_pd_error_wrt_total_net_input(training_outputs[o])
@@ -219,6 +220,10 @@ class Neuron:
 # Blog post example:
 
 nn = NeuralNetwork(2, 2, 2, hidden_layer_weights=[0.15, 0.2, 0.25, 0.3], hidden_layer_bias=0.35, output_layer_weights=[0.4, 0.45, 0.5, 0.55], output_layer_bias=0.6)
+##########
+inpu =raw_input("Enter the bias of the neural nets")
+temp1 = re.segment("inpu")
+############
 for i in range(10000):
     nn.train([0.05, 0.1], [0.01, 0.99])
     print(i, round(nn.calculate_total_error([[[0.05, 0.1], [0.01, 0.99]]]), 9))
